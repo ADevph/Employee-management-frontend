@@ -33,7 +33,7 @@ const AddUser = ({ addUser }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-[500px] bg-gray-200">
+    <div className="flex justify-center items-center h-[500px] bg-gray-100 rounded-lg">
       <div className="max-w-md w-full mx-auto bg-white shadow p-6 rounded-lg">
         <h2 className="text-2xl font-semibold mb-4 text-center">Add Employee</h2>
         <form onSubmit={handleSubmit}>

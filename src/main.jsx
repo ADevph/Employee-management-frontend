@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Employee from './components/Employee';
+import EmployeeDetails from './components/EmployeeDetails';
+
 import './index.css'
 import {
   createBrowserRouter,
@@ -13,6 +15,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <div><Employee /></div>,
   },
+  {
+    path:"/employee/:id",
+    element: <div><EmployeeDetails /> </div>,
+  }
   
 ]);
 
