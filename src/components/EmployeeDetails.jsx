@@ -1,42 +1,44 @@
+
+
 import React, { useState, useEffect } from "react";
+import { Link, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+
 
 const EmployeeDetails = () => {
   const [employee, setEmployee] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
+  const location = useLocation();
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/data.json");
-        console.log("Response data:", response.data); // Check response data
-  
-        const employeeData = response.data.find(
-          (emp) => emp.id === parseInt(id)
-        );
-        console.log("Employee data:", employeeData); // Check employee data
-  
-        if (employeeData) {
-          setEmployee(employeeData);
-          setFullName(`${employeeData.firstName} ${employeeData.lastName}`);
-          setPhoneNumber(employeeData.phone);
-        } else {
-          console.error("Employee not found");
-        }
-      } catch (error) {
-        console.error("Error fetching employee data:", error);
+    if (location.state) {
+      setEmployee(location.state);
+      setFullName(`${location.state.firstName} ${location.state.lastName}`);
+      setPhoneNumber(location.state.phoneNumber);
+    } else {
+      fetchData();
+    }
+  }, [location.state, id]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("/data.json");
+      const employeeData = response.data.find((emp) => emp.id === parseInt(id));
+      if (employeeData) {
+        setEmployee(employeeData);
+        setFullName(`${employeeData.firstName} ${employeeData.lastName}`);
+        setPhoneNumber(employeeData.phone);
+      } else {
+        console.error("Employee not found");
       }
-    };
-  
-    fetchData();
-  }, [id]);
-  
-  
+    } catch (error) {
+      console.error("Error fetching employee data:", error);
+    }
+  };
+
   const handleEdit = () => {
     setEditMode(true);
   };

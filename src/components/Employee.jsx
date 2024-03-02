@@ -37,7 +37,6 @@ const Employee = () => {
     const confirmMessage = `Are you sure you want to ${action} this employee?`;
     const successMessage = `Employee has been ${action}ed successfully.`;
 
-
     Swal.fire({
       title: confirmMessage,
       icon: "warning",
@@ -61,16 +60,15 @@ const Employee = () => {
     });
   };
 
-
   const handleDelete = async (id) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this employee!',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "You will not be able to recover this employee!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
         setEmployees(employees.filter(employee => employee.id !== id));
@@ -82,6 +80,7 @@ const Employee = () => {
       }
     });
   };
+
   return (
     <div className="container mx-auto">
       <AddUser addUser={addUser} />
@@ -96,39 +95,42 @@ const Employee = () => {
         ) : (
           <table className="w-full border-collapse">
             <thead>
-              <tr>
-                <th className="border px-4 py-2">Full Name</th>
+              <tr className="bg-slate-300 bg-opacity-70">
+                <th className="border px-4 py-2 ">Full Name</th>
                 <th className="border px-4 py-2">Options</th>
               </tr>
             </thead>
-            <tbody>
-              {employees.map((employee, index) => (
-                <tr key={index}>
+            <tbody className="bg-gray-200 bg-opacity-60">
+              {employees.map((employee) => (
+                <tr key={employee.id}>
                   <td className="border px-4 py-2 text-center">{`${employee.firstName} ${employee.lastName}`}</td>
                   <td className="border px-4 py-2 text-center">
                     <Link
-                      to={`/employee/${employee.id}`}
-                      className=" border-blue-500 border-2 rounded-lg p-1 mx-2 text-blue-700 font-semibold hover:text-blue-700"
+                      to={{
+                        pathname: `/employee/${employee.id}`,
+                        state: employee // Pass employee data as state
+                      }}
+                      className="border-blue-500 p-1 border-2 rounded-lg mx-2 text-blue-700 font-semibold hover:text-blue-700"
                     >
                       Details
                     </Link>
                     {employee.blocked ? (
                       <button
-                        className="text-green-700 font-semibold mx-2"
+                        className="border-red-500 p-1 border-2 rounded-lg text-green-700 font-semibold mx-2"
                         onClick={() => handleBlock(employee.id, true)}
                       >
                         Unblock
                       </button>
                     ) : (
                       <button
-                        className="border-blue-500 border-2 rounded-lg p-1 text-orange-700 mx-2 font-semibold"
+                        className="border-blue-500 p-1 border-2 rounded-lg text-orange-700 mx-2 font-semibold"
                         onClick={() => handleBlock(employee.id, false)}
                       >
                         Block
                       </button>
                     )}
                     <button
-                      className="border-blue-500 border-2 rounded-lg p-1 font-semibold text-red-600 mx-2"
+                      className="border-blue-500 p-1 border-2 rounded-lg font-semibold text-red-600 mx-2"
                       onClick={() => handleDelete(employee.id)}
                     >
                       Delete

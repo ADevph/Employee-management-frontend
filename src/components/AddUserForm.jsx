@@ -3,11 +3,11 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const AddUser = ({ addUser }) => {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,18 +20,9 @@ const AddUser = ({ addUser }) => {
       return;
     }
     const id = Date.now(); // Generate a unique ID for the new user
-    addUser({ id, firstName, lastName, email, phoneNumber });
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPhoneNumber("");
-    Swal.fire({
-      title: "Success",
-      text: "Employee added successfully",
-      icon: "success",
-    }).then(() => {
-      navigate(`/employee/${id}`); // Redirect to the dynamic page for the new user
-    });
+    const newUser = { id, firstName, lastName, email, phoneNumber };
+    addUser(newUser);
+    navigate(`/employee/${id}`, { state: newUser }); // Pass user data along with ID
   };
 
   return (
