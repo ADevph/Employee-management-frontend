@@ -63,7 +63,7 @@ const EmployeeDetails = () => {
               Employee Details
             </h2>
             <div className="text-center">
-              <table className="mx-auto border-collapse border border-gray-200">
+              <table className="mx-auto h-48 border-collapse border border-gray-200">
                 <tbody>
                   <tr>
                     <td className="font-semibold border border-gray-200 px-4 py-2">

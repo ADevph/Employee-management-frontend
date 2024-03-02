@@ -8,20 +8,28 @@ const Employee = () => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    const storedEmployees = localStorage.getItem("employees");
+    if (storedEmployees) {
+      setEmployees(JSON.parse(storedEmployees));
+    } else {
+      fetchData();
+    }
   }, []);
 
   const fetchData = async () => {
     try {
       const response = await axios.get("/data.json");
       setEmployees(response.data);
+      localStorage.setItem("employees", JSON.stringify(response.data));
     } catch (error) {
       console.error("Error fetching employee data:", error);
     }
   };
 
   const addUser = (newUser) => {
-    setEmployees([...employees, newUser]);
+    const updatedEmployees = [...employees, newUser];
+    setEmployees(updatedEmployees);
+    localStorage.setItem("employees", JSON.stringify(updatedEmployees));
   };
 
   const handleBlock = async (id, blocked) => {
@@ -46,13 +54,14 @@ const Employee = () => {
             return employee;
           })
         );
+        localStorage.setItem("employees", JSON.stringify(employees));
         Swal.fire("Success!", successMessage, "success");
       }
     });
   };
 
   return (
-    <div className="container mx-auto ">
+    <div className="container mx-auto">
       <AddUser addUser={addUser} />
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-6 text-center">
@@ -77,7 +86,7 @@ const Employee = () => {
                   <td className="border px-4 py-2 text-center">
                     <Link
                       to={`/employee/${employee.id}`}
-                      className="mx-2 text-blue-700 font-semibold hover:text-blue-700 "
+                      className="mx-2 text-blue-700 font-semibold hover:text-blue-700"
                     >
                       Details
                     </Link>
