@@ -83,6 +83,7 @@ const Employee = () => {
 
   return (
     <div className="container mx-auto">
+      <h1 className="text-center font-bold text-blue-500">Asif Inc</h1>
       <AddUser addUser={addUser} />
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-6 text-center">
