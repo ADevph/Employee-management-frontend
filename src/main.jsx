@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Userlist from './components/Userlist';
-import UserDetailsPage from './components/UserDetailsPage';
+import Employee from './components/Employee';
 import './index.css'
 import {
   createBrowserRouter,
@@ -12,12 +11,9 @@ import './App.css';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div><Userlist /></div>,
+    element: <div><Employee /></div>,
   },
-  {
-    path: "/user/:userId",
-    element: <UserDetailsPage />
-  }
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
