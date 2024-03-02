@@ -1,36 +1,38 @@
 import React, { useState } from 'react';
-import swal from 'sweetalert2';
-import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
+import { useNavigate } from 'react-router-dom';
 
 const AddUser = ({ addUser }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const history = useHistory();
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!firstName || !lastName || !email || !phoneNumber) {
-        Swal.fire({
-            title: "Error!",
-            text: "Please fill in all required fields.",
-            icon: "error",
-          });
-        return;
+      Swal.fire({
+        title: "Error!",
+        text: "Please fill in all required fields.",
+        icon: "error",
+      });
+      return;
     }
     addUser({ firstName, lastName, email, phoneNumber });
-
     setFirstName('');
     setLastName('');
     setEmail('');
     setPhoneNumber('');
     Swal.fire({
-        title: "Success",
-        text: "User added successfully",
-        icon: "success",
-      });
-    };
+      title: "Success",
+      text: "User added successfully",
+      icon: "success",
+    });
+    navigate('/');
+  };
 
   return (
     <div className="container mx-auto mt-8">
