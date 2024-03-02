@@ -12,6 +12,13 @@
       "lastName": "Smith",
       "email": "jane.smith@example.com",
       "phone": "9876543210"
+    },
+    {
+      "id": 3,
+      "firstName": "Shahrukh",
+      "lastName": "Khan",
+      "email": "khan@example.com",
+      "phone": "7876543210"
     }
   ]
   

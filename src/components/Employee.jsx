@@ -108,7 +108,7 @@ const Employee = () => {
                   <td className="border px-4 py-2 text-center">
                     <Link
                       to={`/employee/${employee.id}`}
-                      className="mx-2 text-blue-700 font-semibold hover:text-blue-700"
+                      className=" border-blue-500 border-2 rounded-lg p-1 mx-2 text-blue-700 font-semibold hover:text-blue-700"
                     >
                       Details
                     </Link>
@@ -121,14 +121,14 @@ const Employee = () => {
                       </button>
                     ) : (
                       <button
-                        className="text-orange-700 mx-2 font-semibold"
+                        className="border-blue-500 border-2 rounded-lg p-1 text-orange-700 mx-2 font-semibold"
                         onClick={() => handleBlock(employee.id, false)}
                       >
                         Block
                       </button>
                     )}
                     <button
-                      className="font-semibold text-red-600 mx-2"
+                      className="border-blue-500 border-2 rounded-lg p-1 font-semibold text-red-600 mx-2"
                       onClick={() => handleDelete(employee.id)}
                     >
                       Delete
