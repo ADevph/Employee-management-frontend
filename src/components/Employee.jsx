@@ -37,6 +37,7 @@ const Employee = () => {
     const confirmMessage = `Are you sure you want to ${action} this employee?`;
     const successMessage = `Employee has been ${action}ed successfully.`;
 
+
     Swal.fire({
       title: confirmMessage,
       icon: "warning",
@@ -60,6 +61,27 @@ const Employee = () => {
     });
   };
 
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this employee!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setEmployees(employees.filter(employee => employee.id !== id));
+        Swal.fire(
+          'Deleted!',
+          'Employee has been deleted successfully.',
+          'success'
+        );
+      }
+    });
+  };
   return (
     <div className="container mx-auto">
       <AddUser addUser={addUser} />

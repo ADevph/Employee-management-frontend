@@ -19,7 +19,8 @@ const AddUser = ({ addUser }) => {
       });
       return;
     }
-    addUser({ firstName, lastName, email, phoneNumber });
+    const id = Date.now(); // Generate a unique ID for the new user
+    addUser({ id, firstName, lastName, email, phoneNumber });
     setFirstName("");
     setLastName("");
     setEmail("");
@@ -29,7 +30,7 @@ const AddUser = ({ addUser }) => {
       text: "Employee added successfully",
       icon: "success",
     });
-    navigate("/");
+    navigate(`/employee/${id}`); // Redirect to the dynamic page for the new user
   };
 
   return (
@@ -76,7 +77,10 @@ const AddUser = ({ addUser }) => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="phoneNumber" className="block text-sm font-medium">
+            <label
+              htmlFor="phoneNumber"
+              className="block text-sm font-medium"
+            >
               Phone Number
             </label>
             <input

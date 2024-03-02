@@ -14,20 +14,29 @@ const EmployeeDetails = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/data.json");
+        console.log("Response data:", response.data); // Check response data
+  
         const employeeData = response.data.find(
           (emp) => emp.id === parseInt(id)
         );
-        setEmployee(employeeData);
-        setFullName(`${employeeData.firstName} ${employeeData.lastName}`);
-        setPhoneNumber(employeeData.phone);
+        console.log("Employee data:", employeeData); // Check employee data
+  
+        if (employeeData) {
+          setEmployee(employeeData);
+          setFullName(`${employeeData.firstName} ${employeeData.lastName}`);
+          setPhoneNumber(employeeData.phone);
+        } else {
+          console.error("Employee not found");
+        }
       } catch (error) {
         console.error("Error fetching employee data:", error);
       }
     };
-
+  
     fetchData();
   }, [id]);
-
+  
+  
   const handleEdit = () => {
     setEditMode(true);
   };
