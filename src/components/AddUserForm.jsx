@@ -19,10 +19,10 @@ const AddUser = ({ addUser }) => {
       });
       return;
     }
-    const id = Date.now(); // Generate a unique ID for the new user
+    const id = Date.now(); 
     const newUser = { id, firstName, lastName, email, phoneNumber };
     addUser(newUser);
-    navigate(`/employee/${id}`, { state: newUser }); // Pass user data along with ID
+    navigate(`/employee/${id}`, { state: newUser });
   };
 
   return (

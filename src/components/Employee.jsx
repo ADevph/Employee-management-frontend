@@ -109,7 +109,7 @@ const Employee = () => {
                     <Link
                       to={{
                         pathname: `/employee/${employee.id}`,
-                        state: employee // Pass employee data as state
+                        state: employee 
                       }}
                       className="border-blue-500 p-1 border-2 rounded-lg mx-2 text-blue-700 font-semibold hover:text-blue-700"
                     >

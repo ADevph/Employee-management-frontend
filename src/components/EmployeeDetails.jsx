@@ -17,7 +17,7 @@ const EmployeeDetails = () => {
     if (location.state) {
       setEmployee(location.state);
       setFullName(`${location.state.firstName} ${location.state.lastName}`);
-      setPhoneNumber(location.state.phoneNumber);
+      setPhoneNumber(location.state.phone);
     } else {
       fetchData();
     }
@@ -44,7 +44,6 @@ const EmployeeDetails = () => {
   };
 
   const handleSave = () => {
-    // Update employee data in local storage
     const updatedEmployee = {
       ...employee,
       firstName: fullName.split(" ")[0],
@@ -53,18 +52,26 @@ const EmployeeDetails = () => {
     };
     localStorage.setItem(`employee_${id}`, JSON.stringify(updatedEmployee));
 
-    // Update state with the changes
     setEmployee(updatedEmployee);
     setEditMode(false);
+
+    const updatedEmployees = JSON.parse(localStorage.getItem("employees")).map(
+      (emp) => {
+        if (emp.id === updatedEmployee.id) {
+          return updatedEmployee;
+        }
+        return emp;
+      }
+    );
+    localStorage.setItem("employees", JSON.stringify(updatedEmployees));
   };
 
   const handleCancel = () => {
-    // Reset fields to original data
     setFullName(`${employee.firstName} ${employee.lastName}`);
     setPhoneNumber(employee.phone);
     setEditMode(false);
   };
-
+  
   return (
     <div className="container mx-auto mt-8">
       <div className="mt-8">
