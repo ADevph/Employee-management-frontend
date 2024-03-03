@@ -19,7 +19,7 @@ const AddUser = ({ addUser }) => {
       });
       return;
     }
-    const id = Date.now(); 
+    const id = Date.now();
     const newUser = { id, firstName, lastName, email, phoneNumber };
     addUser(newUser);
     navigate(`/employee/${id}`, { state: newUser });
@@ -69,10 +69,7 @@ const AddUser = ({ addUser }) => {
             />
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="phoneNumber"
-              className="block text-sm font-medium"
-            >
+            <label htmlFor="phoneNumber" className="block text-sm font-medium">
               Phone Number
             </label>
             <input

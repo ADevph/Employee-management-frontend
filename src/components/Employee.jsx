@@ -68,14 +68,14 @@ const Employee = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        setEmployees(employees.filter(employee => employee.id !== id));
+        setEmployees(employees.filter((employee) => employee.id !== id));
         Swal.fire(
-          'Deleted!',
-          'Employee has been deleted successfully.',
-          'success'
+          "Deleted!",
+          "Employee has been deleted successfully.",
+          "success"
         );
       }
     });
@@ -109,7 +109,7 @@ const Employee = () => {
                     <Link
                       to={{
                         pathname: `/employee/${employee.id}`,
-                        state: employee 
+                        state: employee,
                       }}
                       className="border-blue-500 p-1 border-2 rounded-lg mx-2 text-blue-700 font-semibold hover:text-blue-700"
                     >

@@ -1,9 +1,6 @@
-
-
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
-
 
 const EmployeeDetails = () => {
   const [employee, setEmployee] = useState(null);
@@ -31,7 +28,7 @@ const EmployeeDetails = () => {
         setEmployee(employeeData);
         setFullName(`${employeeData.firstName} ${employeeData.lastName}`);
         setPhoneNumber(employeeData.phoneNumber);
-            } else {
+      } else {
         console.error("Employee not found");
       }
     } catch (error) {
