@@ -17,7 +17,7 @@ const EmployeeDetails = () => {
     if (location.state) {
       setEmployee(location.state);
       setFullName(`${location.state.firstName} ${location.state.lastName}`);
-      setPhoneNumber(location.state.phone);
+      setPhoneNumber(location.state.phoneNumber);
     } else {
       fetchData();
     }
@@ -30,8 +30,8 @@ const EmployeeDetails = () => {
       if (employeeData) {
         setEmployee(employeeData);
         setFullName(`${employeeData.firstName} ${employeeData.lastName}`);
-        setPhoneNumber(employeeData.phone);
-      } else {
+        setPhoneNumber(employeeData.phoneNumber);
+            } else {
         console.error("Employee not found");
       }
     } catch (error) {
@@ -48,7 +48,7 @@ const EmployeeDetails = () => {
       ...employee,
       firstName: fullName.split(" ")[0],
       lastName: fullName.split(" ")[1],
-      phone: phoneNumber,
+      phoneNumber: phoneNumber,
     };
     localStorage.setItem(`employee_${id}`, JSON.stringify(updatedEmployee));
 
@@ -68,10 +68,10 @@ const EmployeeDetails = () => {
 
   const handleCancel = () => {
     setFullName(`${employee.firstName} ${employee.lastName}`);
-    setPhoneNumber(employee.phone);
+    setPhoneNumber(employee.phoneNumber);
     setEditMode(false);
   };
-  
+
   return (
     <div className="container mx-auto mt-8">
       <div className="mt-8">
